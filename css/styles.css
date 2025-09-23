@@ -1,0 +1,21 @@
+.post-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+nav a, nav button {
+  background: #111;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+nav button {
+  border: none;
+  cursor: pointer;
+}
