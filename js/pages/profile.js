@@ -2,15 +2,16 @@ import { API_SOCIAL } from "../api/config.js";
 
 const token = localStorage.getItem("accessToken");
 const apiKey = localStorage.getItem("apiKey");
-const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+const currentUser = JSON.parse(localStorage.getItem("userProfile"));
 
 const profileInfo = document.querySelector("#profile-info");
-const postsContainer = document.querySelector("#my-posts-container");
+const postsContainer = document.querySelector("#profile-posts");
 const errorBox = document.querySelector("#profile-error");
+const followBtn = document.querySelector("#follow-btn");
 const logoutBtn = document.querySelector("#logout");
 
 // 🔹 Redirect if not logged in
-if (!token || !apiKey || !userProfile) {
+if (!token || !apiKey || !currentUser) {
   window.location.href = "./login.html";
 }
 
@@ -20,27 +21,94 @@ logoutBtn.addEventListener("click", () => {
   window.location.href = "./login.html";
 });
 
-// 🔹 Display profile info
-profileInfo.innerHTML = `
-  <p><strong>Name:</strong> ${userProfile.name}</p>
-  <p><strong>Email:</strong> ${userProfile.email}</p>
-`;
+// 🔹 Which profile to view? (own or other)
+const params = new URLSearchParams(window.location.search);
+const profileName = params.get("name") || currentUser.name;
 
-// 🔹 Fetch my posts
-async function getMyPosts() {
+// 🔹 Fetch profile info + posts
+async function getProfile() {
   try {
-    const res = await fetch(
-      `${API_SOCIAL}/profiles/${userProfile.name}/posts`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "X-Noroff-API-Key": apiKey,
-        },
-      }
-    );
+    const res = await fetch(`${API_SOCIAL}/profiles/${profileName}?_followers=true&_following=true`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    });
 
     const data = await res.json();
-    console.log("My posts response:", data);
+    console.log("Profile response:", data);
+
+    if (!res.ok) {
+      throw new Error(data.errors?.[0]?.message || "Failed to load profile");
+    }
+
+    renderProfile(data.data);
+    getUserPosts(profileName);
+  } catch (err) {
+    errorBox.textContent = err.message;
+    console.error("Profile error:", err);
+  }
+}
+
+// 🔹 Render profile info + follow/unfollow button
+function renderProfile(profile) {
+  profileInfo.innerHTML = `
+    <p><strong>Name:</strong> ${profile.name}</p>
+    <p><strong>Email:</strong> ${profile.email}</p>
+    <p><strong>Followers:</strong> ${profile._count?.followers ?? 0}</p>
+    <p><strong>Following:</strong> ${profile._count?.following ?? 0}</p>
+  `;
+
+  // If it's your own profile, hide follow button
+  if (profile.name === currentUser.name) {
+    followBtn.style.display = "none";
+    return;
+  }
+
+  // Show follow/unfollow button
+  const isFollowing = profile.followers?.some((f) => f.name === currentUser.name);
+  followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
+
+  followBtn.onclick = () => toggleFollow(profile.name, isFollowing);
+}
+
+// 🔹 Follow / Unfollow a user
+async function toggleFollow(username, isFollowing) {
+  try {
+    const url = `${API_SOCIAL}/profiles/${username}/${isFollowing ? "unfollow" : "follow"}`;
+    const method = isFollowing ? "DELETE" : "POST";
+
+    const res = await fetch(url, {
+      method,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.errors?.[0]?.message || "Failed to toggle follow");
+    }
+
+    getProfile(); // Refresh profile
+  } catch (err) {
+    alert(err.message);
+  }
+}
+
+// 🔹 Fetch posts for this profile
+async function getUserPosts(username) {
+  try {
+    const res = await fetch(`${API_SOCIAL}/profiles/${username}/posts`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "X-Noroff-API-Key": apiKey,
+      },
+    });
+
+    const data = await res.json();
+    console.log("User posts response:", data);
 
     if (!res.ok) {
       throw new Error(data.errors?.[0]?.message || "Failed to load posts");
@@ -49,16 +117,16 @@ async function getMyPosts() {
     renderPosts(data.data);
   } catch (err) {
     errorBox.textContent = err.message;
-    console.error("Profile error:", err);
+    console.error("Posts error:", err);
   }
 }
 
-// 🔹 Render my posts
+// 🔹 Render posts
 function renderPosts(posts) {
   postsContainer.innerHTML = "";
 
   if (!posts || posts.length === 0) {
-    postsContainer.innerHTML = "<p>You haven't created any posts yet.</p>";
+    postsContainer.innerHTML = "<p>No posts found for this user.</p>";
     return;
   }
 
@@ -72,16 +140,24 @@ function renderPosts(posts) {
       <small>Created: ${new Date(post.created).toLocaleString()}</small>
       <br>
       <a href="./post.html?id=${post.id}">View</a>
-      <a href="./edit.html?id=${post.id}">Edit</a>
-      <button class="delete-btn" data-id="${post.id}">Delete</button>
     `;
 
-    postsContainer.appendChild(card);
-  });
+    // If it's your post → show edit/delete
+    if (profileName === currentUser.name) {
+      const editLink = document.createElement("a");
+      editLink.href = `./edit.html?id=${post.id}`;
+      editLink.textContent = "Edit";
 
-  // Add delete handlers
-  document.querySelectorAll(".delete-btn").forEach((btn) => {
-    btn.addEventListener("click", () => deletePost(btn.dataset.id));
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.addEventListener("click", () => deletePost(post.id));
+
+      card.appendChild(document.createElement("br"));
+      card.appendChild(editLink);
+      card.appendChild(deleteBtn);
+    }
+
+    postsContainer.appendChild(card);
   });
 }
 
@@ -103,11 +179,11 @@ async function deletePost(id) {
       throw new Error(data.errors?.[0]?.message || "Failed to delete post");
     }
 
-    getMyPosts(); // Refresh after deleting
+    getUserPosts(currentUser.name); // Refresh your posts
   } catch (err) {
     alert(err.message);
   }
 }
 
-// Load my posts
-getMyPosts();
+// 🔹 Load profile on page load
+getProfile();

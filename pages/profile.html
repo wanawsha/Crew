@@ -2,24 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>My Profile</title>
+  <title>Profile</title>
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
   <header>
-    <h1>My Profile</h1>
+    <h1>Profile</h1>
     <nav>
-      <a href="./feed.html">Back to Feed</a>
-      <a href="./create.html">Create Post</a>
-      <button id="logout">Logout</button>
+        <a href="./feed.html">Home</a>
+        <a href="./feed.html">Back to Feed</a>
+        <a href="./create.html">Create Post</a>
+        <button id="logout">Logout</button>
     </nav>
   </header>
 
   <main>
+    <!-- Profile details -->
     <section id="profile-info"></section>
 
-    <h2>My Posts</h2>
-    <div id="my-posts-container"></div>
+    <!-- Follow/Unfollow button -->
+    <button id="follow-btn"></button>
+
+    <!-- Posts -->
+    <h2>User's Posts</h2>
+    <div id="profile-posts"></div>
+
+    <!-- Error messages -->
     <p id="profile-error" style="color:red"></p>
   </main>
 
