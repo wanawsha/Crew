@@ -1,21 +1,22 @@
-.post-card {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #fff;
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: rgb(28, 24, 24);
+    color: white;
 }
 
+
+
 nav a, nav button {
-  background: #111;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  text-decoration: none;
-  margin-left: 0.5rem;
+    background: #111;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-left: 0.5rem;
 }
 
 nav button {
-  border: none;
-  cursor: pointer;
+    border: none;
+    cursor: pointer;
 }
+

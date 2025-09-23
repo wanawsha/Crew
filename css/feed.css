@@ -1,0 +1,19 @@
+#posts-container {
+    display: flex;
+    flex-direction: column;   /* stack posts vertically */
+    align-items: center;      /* center post-cards horizontally */
+    gap: 1.5rem;              /* space between posts */
+    margin: 0 auto;           /* center the whole container */
+    max-width: 600px;         /* like Instagram feed */
+    padding: 1rem;
+}
+
+.post-card {
+    width: 100%;              /* take full container width */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    background: #fff;
+    aspect-ratio: 16 / 9;     /* optional fixed ratio */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
