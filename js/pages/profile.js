@@ -10,22 +10,22 @@ const errorBox = document.querySelector("#profile-error");
 const followBtn = document.querySelector("#follow-btn");
 const logoutBtn = document.querySelector("#logout");
 
-// 🔹 Redirect if not logged in
+// Redirect if not logged in
 if (!token || !apiKey || !currentUser) {
   window.location.href = "./login.html";
 }
 
-// 🔹 Logout
+// Logout
 logoutBtn.addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "./login.html";
 });
 
-// 🔹 Which profile to view? (own or other)
+// Which profile to view? (own or other)
 const params = new URLSearchParams(window.location.search);
 const profileName = params.get("name") || currentUser.name;
 
-// 🔹 Fetch profile info + posts
+// Fetch profile info + posts
 async function getProfile() {
   try {
     const res = await fetch(`${API_SOCIAL}/profiles/${profileName}?_followers=true&_following=true`, {
@@ -50,7 +50,7 @@ async function getProfile() {
   }
 }
 
-// 🔹 Render profile info + follow/unfollow button
+// Render profile info + follow/unfollow button
 function renderProfile(profile) {
   profileInfo.innerHTML = `
     <p><strong>Name:</strong> ${profile.name}</p>
@@ -72,7 +72,7 @@ function renderProfile(profile) {
   followBtn.onclick = () => toggleFollow(profile.name, isFollowing);
 }
 
-// 🔹 Follow / Unfollow a user
+// Follow / Unfollow a user
 async function toggleFollow(username, isFollowing) {
   try {
     const url = `${API_SOCIAL}/profiles/${username}/${isFollowing ? "unfollow" : "follow"}`;
@@ -91,13 +91,13 @@ async function toggleFollow(username, isFollowing) {
       throw new Error(data.errors?.[0]?.message || "Failed to toggle follow");
     }
 
-    getProfile(); // Refresh profile
+    getProfile(); 
   } catch (err) {
     alert(err.message);
   }
 }
 
-// 🔹 Fetch posts for this profile
+// Fetch posts for this profile
 async function getUserPosts(username) {
   try {
     const res = await fetch(`${API_SOCIAL}/profiles/${username}/posts`, {
@@ -161,7 +161,7 @@ function renderPosts(posts) {
   });
 }
 
-// 🔹 Delete post
+// Delete post
 async function deletePost(id) {
   if (!confirm("Are you sure you want to delete this post?")) return;
 
@@ -179,11 +179,11 @@ async function deletePost(id) {
       throw new Error(data.errors?.[0]?.message || "Failed to delete post");
     }
 
-    getUserPosts(currentUser.name); // Refresh your posts
+    getUserPosts(currentUser.name); 
   } catch (err) {
     alert(err.message);
   }
 }
 
-// 🔹 Load profile on page load
+// Load profile on page load
 getProfile();

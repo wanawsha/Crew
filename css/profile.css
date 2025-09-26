@@ -1,0 +1,25 @@
+main {
+    background-color: var(--main-bg);
+    color: black;
+    max-width: 80%;
+    text-align: left;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem auto;
+}
+
+.post-card button, .post-card a {
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem;
+}
+
+.post-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1rem;
+}

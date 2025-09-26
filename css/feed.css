@@ -18,7 +18,7 @@
     margin: auto;
     padding: 4rem;
     border-radius: 1rem;
-    background-color: #e7e7e7;
+    background-color: var(--main-bg);
 }
 
 #feed-posts-container h2 {

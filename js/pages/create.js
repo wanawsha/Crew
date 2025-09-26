@@ -6,18 +6,18 @@ const form = document.querySelector("#create-form");
 const errorBox = document.querySelector("#create-error");
 const logoutBtn = document.querySelector("#logout");
 
-// 🔹 Redirect if not logged in
+//  Redirect if not logged in
 if (!token || !apiKey) {
   window.location.href = "./login.html";
 }
 
-// 🔹 Logout
+// Logout
 logoutBtn.addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "./login.html";
 });
 
-// 🔹 Handle form submit
+// Handle form submit
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   errorBox.textContent = "";
@@ -44,7 +44,7 @@ form.addEventListener("submit", async (e) => {
       throw new Error(data.errors?.[0]?.message || "Failed to create post");
     }
 
-    // ✅ Redirect to feed after creating
+    // Redirect to feed after creating
     window.location.href = "./feed.html";
   } catch (err) {
     errorBox.textContent = err.message;

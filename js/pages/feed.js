@@ -6,29 +6,29 @@ const postsContainer = document.querySelector("#posts-container");
 const errorBox = document.querySelector("#feed-error");
 const logoutBtn = document.querySelector("#logout");
 
-// 🔹 If not logged in, redirect to login page
+// If not logged in, redirect to login page
 if (!token || !apiKey) {
   console.warn("Missing token or apiKey → redirecting to login.");
   window.location.href = "./login.html";
 }
 
-// 🔹 Logout button
+// Logout button
 logoutBtn.addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "./login.html";
 });
 
-// 🔹 Fetch all posts
+// Fetch all posts
 async function getPosts() {
   try {
     console.log("Fetching posts with:", { token, apiKey });
 
-    const res = await fetch(`${API_SOCIAL}/posts`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "X-Noroff-API-Key": apiKey,
-      },
-    });
+const res = await fetch(`${API_SOCIAL}/posts?_author=true`, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "X-Noroff-API-Key": apiKey,
+  },
+});
 
     const data = await res.json();
     console.log("Posts response:", data);
@@ -69,7 +69,7 @@ function renderPosts(posts) {
     card.innerHTML = `
       <h3>${title}</h3>
       <p>${body}</p>
-      <small>By: ${authorName}</small>
+      <small>By: <a href="./profile.html?name=${authorName}">${authorName}</a></small>
       <br>
       <a href="./post.html?id=${post.id}">View Post</a>
     `;
@@ -105,7 +105,7 @@ function renderPosts(posts) {
 
 
 
-// 🔹 Delete post
+// Delete post
 async function deletePost(id) {
   if (!confirm("Are you sure you want to delete this post?")) return;
 
@@ -129,14 +129,14 @@ async function deletePost(id) {
   }
 }
 
-// 🔹 Load posts when page loads
+// Load posts when page loads
 getPosts();
 
 
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
 
-// 🔹 Search handler
+// Search handler
 searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const query = searchInput.value.trim().toLowerCase();
@@ -159,7 +159,7 @@ searchForm.addEventListener("submit", async (e) => {
       throw new Error(data.errors?.[0]?.message || "Failed to load posts for search");
     }
 
-    // 🔹 Filter locally
+    // Filter locally
     const filtered = data.data.filter((post) => {
       const title = (post?.title || "").toLowerCase().trim();
       const body = (post?.body || "").toLowerCase().trim();

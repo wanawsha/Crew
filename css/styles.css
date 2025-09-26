@@ -1,3 +1,6 @@
+:root {
+    --main-bg: #e7e7e7;
+}
 body {
     font-family: "M Plus Rounded", sans-serif;
     color: white;

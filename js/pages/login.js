@@ -12,7 +12,7 @@ form.addEventListener("submit", async (event) => {
   const password = formData.get("password");
 
   try {
-    // 🔹 Step 1: Login request
+    // Login request
     const res = await fetch(`${API_AUTH}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -26,15 +26,14 @@ form.addEventListener("submit", async (event) => {
       throw new Error(data.errors?.[0]?.message || "Login failed");
     }
 
-    // 🔹 Extract token & profile
+    // Extract token & profile
     const token = data.data.accessToken;
     const profile = data.data;
 
-    // 🔹 Save token + profile
+    // Save token + profile
     localStorage.setItem("accessToken", token);
     localStorage.setItem("userProfile", JSON.stringify(profile));
 
-    // 🔹 Step 2: Create API Key (⚡ no body, only Authorization header)
     const resKey = await fetch(`${API_AUTH}/create-api-key`, {
       method: "POST",
       headers: {
@@ -49,11 +48,11 @@ form.addEventListener("submit", async (event) => {
       throw new Error(keyData.errors?.[0]?.message || "Failed to create API key");
     }
 
-    // 🔹 Save API Key
+    // Save API Key
     const apiKey = keyData.data.key;
     localStorage.setItem("apiKey", apiKey);
 
-    // 🔹 Redirect to feed page
+    // Redirect to feed page
     window.location.href = "./feed.html";
   } catch (err) {
     errorBox.textContent = err.message;
