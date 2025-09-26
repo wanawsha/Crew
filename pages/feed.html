@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="../css/feed.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"> -->
 </head>
 <body>
   <header>
@@ -21,7 +24,7 @@
   </header>
 
   <main>
-    <section>
+    <section id="search-post">
      <h2>Search Posts</h2>
         <form id="search-form">
         <input type="text" id="search-input" placeholder="Search posts..." required>
@@ -29,9 +32,12 @@
         </form>
   </section>
 
+  <section id="feed-posts-container">
     <h2>All Posts</h2>
     <div id="posts-container"></div>
     <p id="feed-error" style="color:red"></p>
+  </section>
+   
   </main>
 
   <script type="module" src="../js/pages/feed.js"></script>

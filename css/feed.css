@@ -1,19 +1,49 @@
-#posts-container {
+.post-card {
+    max-width: 100%;
+    min-height: 300px;
     display: flex;
-    flex-direction: column;   /* stack posts vertically */
-    align-items: center;      /* center post-cards horizontally */
-    gap: 1.5rem;              /* space between posts */
-    margin: 0 auto;           /* center the whole container */
-    max-width: 600px;         /* like Instagram feed */
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+}
+
+#feed-posts-container {
+    /* display: flex;
+    flex-direction: column; */
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+    gap: 1rem;
+    max-width: 1000px;
+    margin: auto;
+    padding: 4rem;
+    border-radius: 1rem;
+    background-color: #e7e7e7;
+}
+
+#feed-posts-container h2 {
+    margin: auto;
+    font-size: 3rem;
+    
+}
+
+
+
+/* #posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;              
+    margin: 0 auto;           
     padding: 1rem;
 }
 
 .post-card {
-    width: 100%;              /* take full container width */
+    width: 100%;              
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 1rem;
+    margin: 1.5rem;
     background: #fff;
-    aspect-ratio: 16 / 9;     /* optional fixed ratio */
+    aspect-ratio: 16 / 10;  
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+} */
