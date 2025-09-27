@@ -18,6 +18,11 @@ logoutBtn.addEventListener("click", () => {
   window.location.href = "./login.html";
 });
 
+/**
+ * Fetch and render all the posts for the feed.
+ * @returns {Promise<void>}
+ */
+
 // Fetch all posts
 async function getPosts() {
   try {
@@ -115,7 +120,11 @@ function renderPosts(posts) {
 }
 
 
-
+/**
+ * 
+ * @param {number|string} id - the post ID
+ * @returns {Promise<void>}
+ */
 // Delete post
 async function deletePost(id) {
   if (!confirm("Are you sure you want to delete this post?")) return;
