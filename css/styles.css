@@ -28,6 +28,9 @@ nav a, nav button {
     font-size: 1.2rem;
 }
 
+#logout {
+    background: none;
+}
 
 nav button {
     border: none;

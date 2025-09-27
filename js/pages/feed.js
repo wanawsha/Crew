@@ -44,6 +44,17 @@ const res = await fetch(`${API_SOCIAL}/posts?_author=true`, {
   }
 }
 
+
+/**
+ * Render a list of posts into the posts container
+ * 
+ * @param {Array<Object>} posts - Array of posts objects from the API
+ * @param {number} posts[].id - Unique post ID
+ * @param {string} [posts[].title] - Post title (optional)
+ * @param {string} [posts[].body] - Post body text (optional)
+ * @param {{name?:string}} [posts[].author] - Author obejct (optional)
+ */
+
 function renderPosts(posts) {
   postsContainer.innerHTML = "";
 

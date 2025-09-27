@@ -51,13 +51,14 @@ async function getProfile() {
 }
 
 // Render profile info + follow/unfollow button
-function renderProfile(profile) {
-  profileInfo.innerHTML = `
-    <p><strong>Name:</strong> ${profile.name}</p>
-    <p><strong>Email:</strong> ${profile.email}</p>
-    <p><strong>Followers:</strong> ${profile._count?.followers ?? 0}</p>
-    <p><strong>Following:</strong> ${profile._count?.following ?? 0}</p>
-  `;
+    function renderProfile(profile) {
+    profileInfo.innerHTML = `
+        <p><strong>Name:</strong> ${profile.name}</p>
+        <p><strong>Email:</strong> ${profile.email}</p>
+        <p><strong>Followers:</strong> ${profile._count?.followers ?? 0}</p>
+        <p><strong>Following:</strong> ${profile._count?.following ?? 0}</p>
+    `;
+
 
   // If it's your own profile, hide follow button
   if (profile.name === currentUser.name) {
@@ -130,7 +131,7 @@ async function getUserPosts(username) {
 function renderPosts(posts) {
   postsContainer.innerHTML = "";
 
-  if (!posts || posts.length === 0) {
+    if (!posts || posts.length === 0) {
     postsContainer.innerHTML = "<p>No posts found for this user.</p>";
     return;
   }
@@ -139,15 +140,24 @@ function renderPosts(posts) {
     const card = document.createElement("div");
     card.className = "post-card";
 
+    // Base post info
     card.innerHTML = `
       <h3>${post.title || "Untitled Post"}</h3>
       <p>${post.body || ""}</p>
       <small>Created: ${new Date(post.created).toLocaleString()}</small>
-      <br>
-      <a href="./post.html?id=${post.id}">View</a>
     `;
 
-    // If it's your post → show edit/delete
+    // Actions row
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    // View link (always visible)
+    const viewLink = document.createElement("a");
+    viewLink.href = `./post.html?id=${post.id}`;
+    viewLink.textContent = "View";
+    actions.appendChild(viewLink);
+
+    // If it's your post → add Edit/Delete
     if (profileName === currentUser.name) {
       const editLink = document.createElement("a");
       editLink.href = `./edit.html?id=${post.id}`;
@@ -157,14 +167,15 @@ function renderPosts(posts) {
       deleteBtn.textContent = "Delete";
       deleteBtn.addEventListener("click", () => deletePost(post.id));
 
-      card.appendChild(document.createElement("br"));
-      card.appendChild(editLink);
-      card.appendChild(deleteBtn);
+      actions.appendChild(editLink);
+      actions.appendChild(deleteBtn);
     }
 
+    card.appendChild(actions);
     postsContainer.appendChild(card);
   });
 }
+
 
 // Delete post
 async function deletePost(id) {

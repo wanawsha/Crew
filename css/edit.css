@@ -1,0 +1,42 @@
+body {
+    color: black;
+    text-align: center;
+    margin: 5rem;
+}
+
+#edit-form {
+    background-color: var(--main-bg);
+    padding: 5rem 10rem;
+    max-width: 400px;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    gap: 1rem;
+}
+
+
+#edit-form label
+ {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+}
+
+#edit-form input {
+    padding: 0.5rem 2rem;
+}
+
+
+#edit-form button {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 1rem 4rem;
+  border-radius: 0.5rem;
+}

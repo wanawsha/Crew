@@ -28,9 +28,10 @@ if (!postId) {
 }
 
 // Fetch a single post
+// Fetch a single post
 async function getPost(id) {
   try {
-    const res = await fetch(`${API_SOCIAL}/posts/${id}`, {
+    const res = await fetch(`${API_SOCIAL}/posts/${id}?_author=true`, {
       headers: {
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": apiKey,
@@ -51,16 +52,20 @@ async function getPost(id) {
   }
 }
 
+
 // Render post details
 function renderPost(post) {
-  postContainer.innerHTML = `
-    <div class="post-card">
-      <h2>${post.title || "Untitled Post"}</h2>
-      <p>${post.body || ""}</p>
-      <small>By: ${post.author?.name || "Unknown"}</small>
-      <br>
-      <p><strong>Created:</strong> ${new Date(post.created).toLocaleString()}</p>
-      <p><strong>Updated:</strong> ${new Date(post.updated).toLocaleString()}</p>
-    </div>
-  `;
+postContainer.innerHTML = `
+  <div class="post-card">
+    <h2>${post.title || "Untitled Post"}</h2>
+    <p>${post.body || ""}</p>
+    <small>By: 
+      <a href="./profile.html?name=${post.author?.name}">
+        ${post.author?.name || "Unknown"}
+      </a>
+    </small>
+    <p><strong>Created:</strong> ${new Date(post.created).toLocaleString()}</p>
+    <p><strong>Updated:</strong> ${new Date(post.updated).toLocaleString()}</p>
+  </div>
+`;
 }

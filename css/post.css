@@ -18,3 +18,7 @@ main p, main small {
     padding: 1rem;
     border-radius: 0.5rem;
 }
+
+.post-card a {
+    margin-top: 1rem;
+}
