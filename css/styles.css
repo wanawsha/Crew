@@ -28,8 +28,23 @@ nav a, nav button {
     font-size: 1.2rem;
 }
 
+nav a:hover, nav button:hover {
+    background-color: var(--main-bg);
+}
+
+
 #logout {
     background: none;
+}
+
+#logout:hover {
+    background-color: var(--main-bg);
+}
+
+#search-btn:hover {
+    cursor: pointer;
+    background-color: rgb(76, 76, 76);
+
 }
 
 nav button {
