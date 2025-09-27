@@ -70,13 +70,17 @@ function renderProfile(profile) {
   followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
 
   followBtn.onclick = () => toggleFollow(profile.name, isFollowing);
+
+
 }
 
 // Follow / Unfollow a user
 async function toggleFollow(username, isFollowing) {
   try {
-    const url = `${API_SOCIAL}/profiles/${username}/${isFollowing ? "unfollow" : "follow"}`;
+    const url = `${API_SOCIAL}/profiles/${username}/follow`;
     const method = isFollowing ? "DELETE" : "POST";
+    console.log("Follow API call:", url, method);
+
 
     const res = await fetch(url, {
       method,
@@ -91,11 +95,12 @@ async function toggleFollow(username, isFollowing) {
       throw new Error(data.errors?.[0]?.message || "Failed to toggle follow");
     }
 
-    getProfile(); 
+    getProfile(); // refresh profile after follow/unfollow
   } catch (err) {
     alert(err.message);
   }
 }
+
 
 // Fetch posts for this profile
 async function getUserPosts(username) {
