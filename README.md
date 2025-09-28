@@ -1,0 +1,69 @@
+#Social Media PLatform
+
+A front-end client for the [Noroff Social API v2] (https://docs.noroff.dev/docs/v2/social/posts).
+Built using **HTML, CSS, and Vanilla Javascript (ES6 Modules)**.
+
+---
+
+##Live Demo -> https://wanawsha.github.io/Crew/index.html 
+
+---
+
+##Features
+- Register a new user  
+- Login / Logout with JWT Auth  
+- View all posts (global feed)  
+- View a single post with author details  
+- Create, Edit, and Delete your own posts  
+- Search posts by title/body  
+- View user profiles and their posts  
+- Follow / Unfollow other users 
+
+---
+
+##Project Structure
+/ (root)
+index.html
+pages/
+  login.html
+  register.html
+  feed.html
+  profile.html
+  post.html
+  create.html
+js/
+  api/config.js
+  pages/
+    login.js
+    register.js
+    feed.js
+    profile.js
+    post.js
+    create.js
+css/
+  styles.css
+  feed.css
+  create.css
+  edit.css
+  index.css
+  login-register.css
+  post.css
+  profile.css
+
+---
+
+##Tech Stack
+- HTML
+- CSS3
+- Javascript (ES6 Modules)
+- Noroff API v2
+
+---
+
+##Authentication and Local Storage
+When a user logs in, the following values are saved in `localstorage`:
+- `accessToken` - used for authenticated API requests
+- `apiKey` - required by the Noroff API
+- `userProfile` - stores the logged-in user's details (name, email, etc.)
+
+These are cleared when the user clicks **Logout**
