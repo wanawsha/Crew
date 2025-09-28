@@ -33,7 +33,6 @@ async function getProfile() {
     });
 
     const data = await res.json();
-    console.log("Profile response:", data);
 
     if (!res.ok) {
       throw new Error(data.errors?.[0]?.message || "Failed to load profile");
@@ -76,8 +75,6 @@ async function toggleFollow(username, isFollowing) {
     const url = `${API_SOCIAL}/profiles/${username}/follow`;
     const method = isFollowing ? "DELETE" : "PUT"; 
 
-    console.log("Follow API call:", url, method);
-
     const res = await fetch(url, {
       method,
       headers: {
@@ -110,7 +107,6 @@ async function getUserPosts(username) {
     });
 
     const data = await res.json();
-    console.log("User posts response:", data);
 
     if (!res.ok) {
       throw new Error(data.errors?.[0]?.message || "Failed to load posts");

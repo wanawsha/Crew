@@ -25,7 +25,6 @@ logoutBtn.addEventListener("click", () => {
 // Fetch all posts
 async function getPosts() {
   try {
-    console.log("Fetching posts with:", { token, apiKey });
 
 const res = await fetch(`${API_SOCIAL}/posts?_author=true`, {
   headers: {
@@ -75,8 +74,6 @@ function renderPosts(posts) {
     const body = post?.body || "";
     const authorName = post?.author?.name || "Unknown";
 
-    console.log("Rendering post:", { id: post.id, title, authorName });
-
     const card = document.createElement("div");
     card.className = "post-card";
 
@@ -111,8 +108,6 @@ function renderPosts(posts) {
 
     postsContainer.appendChild(card);
   });
-
-  console.log("Final HTML inside posts-container:", postsContainer.innerHTML);
 }
 
 
@@ -167,7 +162,6 @@ searchForm.addEventListener("submit", async (e) => {
     });
 
     const data = await res.json();
-    console.log("All posts before filtering:", data.data);
 
     if (!res.ok) {
       throw new Error(data.errors?.[0]?.message || "Failed to load posts for search");
@@ -179,7 +173,6 @@ searchForm.addEventListener("submit", async (e) => {
       return title.includes(query) || body.includes(query);
     });
 
-    console.log("Filtered posts:", filtered);
     renderPosts(filtered);
   } catch (err) {
     errorBox.textContent = err.message;

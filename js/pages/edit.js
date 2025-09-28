@@ -19,6 +19,11 @@ logoutBtn.addEventListener("click", () => {
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");
 
+
+/**
+ * Fetch the post by ID and populate the edit form.
+ * @returns {Promise<void>}
+ */
 async function loadPost() {
   try {
     const res = await fetch(`${API_SOCIAL}/posts/${postId}`, {

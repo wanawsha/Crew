@@ -35,7 +35,6 @@ async function getPost(id) {
     });
 
     const data = await res.json();
-    console.log("Single post response:", data);
 
     if (!res.ok) {
       throw new Error(data.errors?.[0]?.message || "Failed to load post");

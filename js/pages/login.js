@@ -19,7 +19,6 @@ form.addEventListener("submit", async (event) => {
     });
 
     const data = await res.json();
-    console.log("Login response:", data);
 
     if (!res.ok) {
       throw new Error(data.errors?.[0]?.message || "Login failed");
@@ -39,7 +38,6 @@ form.addEventListener("submit", async (event) => {
     });
 
     const keyData = await resKey.json();
-    console.log("API Key response:", keyData);
 
     if (!resKey.ok) {
       throw new Error(keyData.errors?.[0]?.message || "Failed to create API key");
