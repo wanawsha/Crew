@@ -25,9 +25,8 @@ logoutBtn.addEventListener("click", () => {
 // Fetch all posts
 async function getPosts() {
   try {
-
-const res = await fetch(`${API_SOCIAL}/posts?_author=true`, {
-  headers: {
+    const res = await fetch(`${API_SOCIAL}/posts?_author=true`, {
+    headers: {
     Authorization: `Bearer ${token}`,
     "X-Noroff-API-Key": apiKey,
   },
@@ -41,7 +40,7 @@ const res = await fetch(`${API_SOCIAL}/posts?_author=true`, {
     }
 
     renderPosts(data.data); 
-  } catch (err) {
+    } catch (err) {
     errorBox.textContent = err.message;
     console.error("Feed error:", err);
   }
