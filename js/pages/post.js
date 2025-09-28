@@ -6,18 +6,15 @@ const postContainer = document.querySelector("#post-container");
 const errorBox = document.querySelector("#post-error");
 const logoutBtn = document.querySelector("#logout");
 
-// Redirect if not logged in
 if (!token || !apiKey) {
   window.location.href = "./login.html";
 }
 
-// Logout button
 logoutBtn.addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "./login.html";
 });
 
-// Get post ID from URL (?id=123)
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");
 
@@ -27,7 +24,6 @@ if (!postId) {
   getPost(postId);
 }
 
-// Fetch a single post
 // Fetch a single post
 async function getPost(id) {
   try {

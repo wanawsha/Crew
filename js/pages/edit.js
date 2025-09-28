@@ -6,7 +6,6 @@ const form = document.querySelector("#edit-form");
 const errorBox = document.querySelector("#edit-error");
 const logoutBtn = document.querySelector("#logout");
 
-// Redirect if not logged in
 if (!token || !apiKey) {
   window.location.href = "./login.html";
 }
@@ -17,11 +16,9 @@ logoutBtn.addEventListener("click", () => {
   window.location.href = "./login.html";
 });
 
-// Get post ID from URL
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");
 
-// Load existing post
 async function loadPost() {
   try {
     const res = await fetch(`${API_SOCIAL}/posts/${postId}`, {
@@ -67,7 +64,6 @@ form.addEventListener("submit", async (e) => {
       throw new Error(data.errors?.[0]?.message || "Failed to update post");
     }
 
-    // Redirect back to feed
     window.location.href = "./feed.html";
   } catch (err) {
     errorBox.textContent = err.message;

@@ -6,7 +6,6 @@ const postsContainer = document.querySelector("#posts-container");
 const errorBox = document.querySelector("#feed-error");
 const logoutBtn = document.querySelector("#logout");
 
-// If not logged in, redirect to login page
 if (!token || !apiKey) {
   console.warn("Missing token or apiKey → redirecting to login.");
   window.location.href = "./login.html";
@@ -42,7 +41,7 @@ const res = await fetch(`${API_SOCIAL}/posts?_author=true`, {
       throw new Error(data.errors?.[0]?.message || "Failed to load posts");
     }
 
-    renderPosts(data.data); // ✅ only posts array
+    renderPosts(data.data); 
   } catch (err) {
     errorBox.textContent = err.message;
     console.error("Feed error:", err);
@@ -81,7 +80,6 @@ function renderPosts(posts) {
     const card = document.createElement("div");
     card.className = "post-card";
 
-    // Content
     card.innerHTML = `
       <h3>${title}</h3>
       <p>${body}</p>
@@ -90,7 +88,6 @@ function renderPosts(posts) {
       <a href="./post.html?id=${post.id}">View Post</a>
     `;
 
-    // Add default inline styles to make posts visible
     card.style.border = "1px solid #ccc";
     card.style.background = "white";
     card.style.color = "black";
@@ -98,7 +95,6 @@ function renderPosts(posts) {
     card.style.margin = "10px 0";
     card.style.borderRadius = "6px";
 
-    // Show edit/delete only if current user owns the post
     if (authorName === currentUser) {
       const editLink = document.createElement("a");
       editLink.href = `./edit.html?id=${post.id}`;
@@ -143,13 +139,12 @@ async function deletePost(id) {
       throw new Error(data.errors?.[0]?.message || "Failed to delete post");
     }
 
-    getPosts(); // refresh feed
+    getPosts(); 
   } catch (err) {
     alert(err.message);
   }
 }
 
-// Load posts when page loads
 getPosts();
 
 
@@ -164,7 +159,6 @@ searchForm.addEventListener("submit", async (e) => {
   if (!query) return getPosts(); // if empty, reload normal feed
 
   try {
-    // 🔹 Fetch ALL posts instead of filtering at API level
     const res = await fetch(`${API_SOCIAL}/posts?limit=100`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -179,7 +173,6 @@ searchForm.addEventListener("submit", async (e) => {
       throw new Error(data.errors?.[0]?.message || "Failed to load posts for search");
     }
 
-    // Filter locally
     const filtered = data.data.filter((post) => {
       const title = (post?.title || "").toLowerCase().trim();
       const body = (post?.body || "").toLowerCase().trim();

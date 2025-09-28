@@ -10,7 +10,6 @@ const errorBox = document.querySelector("#profile-error");
 const followBtn = document.querySelector("#follow-btn");
 const logoutBtn = document.querySelector("#logout");
 
-// Redirect if not logged in
 if (!token || !apiKey || !currentUser) {
   window.location.href = "./login.html";
 }
@@ -21,11 +20,9 @@ logoutBtn.addEventListener("click", () => {
   window.location.href = "./login.html";
 });
 
-// Which profile to view? (own or other)
 const params = new URLSearchParams(window.location.search);
 const profileName = params.get("name") || currentUser.name;
 
-// Fetch profile info + posts
 async function getProfile() {
   try {
     const res = await fetch(`${API_SOCIAL}/profiles/${profileName}?_followers=true&_following=true`, {
@@ -60,13 +57,11 @@ async function getProfile() {
     `;
 
 
-  // If it's your own profile, hide follow button
   if (profile.name === currentUser.name) {
     followBtn.style.display = "none";
     return;
   }
 
-  // Show follow/unfollow button
   const isFollowing = profile.followers?.some((f) => f.name === currentUser.name);
   followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
 
@@ -79,9 +74,9 @@ async function getProfile() {
 async function toggleFollow(username, isFollowing) {
   try {
     const url = `${API_SOCIAL}/profiles/${username}/follow`;
-    const method = isFollowing ? "DELETE" : "POST";
-    console.log("Follow API call:", url, method);
+    const method = isFollowing ? "DELETE" : "PUT"; 
 
+    console.log("Follow API call:", url, method);
 
     const res = await fetch(url, {
       method,
@@ -96,11 +91,12 @@ async function toggleFollow(username, isFollowing) {
       throw new Error(data.errors?.[0]?.message || "Failed to toggle follow");
     }
 
-    getProfile(); // refresh profile after follow/unfollow
+    getProfile(); 
   } catch (err) {
     alert(err.message);
   }
 }
+
 
 
 // Fetch posts for this profile
@@ -127,7 +123,7 @@ async function getUserPosts(username) {
   }
 }
 
-// 🔹 Render posts
+// Render posts
 function renderPosts(posts) {
   postsContainer.innerHTML = "";
 
@@ -140,24 +136,21 @@ function renderPosts(posts) {
     const card = document.createElement("div");
     card.className = "post-card";
 
-    // Base post info
+   
     card.innerHTML = `
       <h3>${post.title || "Untitled Post"}</h3>
       <p>${post.body || ""}</p>
       <small>Created: ${new Date(post.created).toLocaleString()}</small>
     `;
 
-    // Actions row
     const actions = document.createElement("div");
     actions.className = "actions";
 
-    // View link (always visible)
     const viewLink = document.createElement("a");
     viewLink.href = `./post.html?id=${post.id}`;
     viewLink.textContent = "View";
     actions.appendChild(viewLink);
 
-    // If it's your post → add Edit/Delete
     if (profileName === currentUser.name) {
       const editLink = document.createElement("a");
       editLink.href = `./edit.html?id=${post.id}`;
@@ -201,5 +194,4 @@ async function deletePost(id) {
   }
 }
 
-// Load profile on page load
 getProfile();

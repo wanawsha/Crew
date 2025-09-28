@@ -12,7 +12,7 @@ form.addEventListener("submit", async (event) => {
   const email = formData.get("email");
   const password = formData.get("password");
 
-  try {
+try {
     const res = await fetch(`${API_AUTH}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -31,3 +31,4 @@ form.addEventListener("submit", async (event) => {
     errorBox.textContent = err.message;
   }
 });
+

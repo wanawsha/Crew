@@ -44,7 +44,6 @@ form.addEventListener("submit", async (e) => {
       throw new Error(data.errors?.[0]?.message || "Failed to create post");
     }
 
-    // Redirect to feed after creating
     window.location.href = "./feed.html";
   } catch (err) {
     errorBox.textContent = err.message;
