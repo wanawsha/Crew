@@ -1,3 +1,16 @@
+## Note on Follow/Unfollow !
+
+This project implements the Follow feature using the Noroff Social API v2.
+Following a user works as expected using PUT /social/profiles/{name}/follow.
+However, Unfollow is not currently supported by the API:
+Attempts with DELETE /social/profiles/{name}/follow return Route not found.
+Using PUT again returns: “You are already following this profile”.
+How this project handles it:
+Users can follow other profiles.
+If a user is already following a profile, the UI displays “Following ✓” and disables the button.
+The unfollow option is disabled, and this limitation is documented here.
+
+
 # Social Media PLatform
 
 A front-end client for the [Noroff Social API v2] (https://docs.noroff.dev/docs/v2/social/posts).
