@@ -46,51 +46,58 @@ async function getProfile() {
   }
 }
 
-// Render profile info + follow/unfollow button
-    function renderProfile(profile) {
-    profileInfo.innerHTML = `
-        <p><strong>Name:</strong> ${profile.name}</p>
-        <p><strong>Email:</strong> ${profile.email}</p>
-        <p><strong>Followers:</strong> ${profile._count?.followers ?? 0}</p>
-        <p><strong>Following:</strong> ${profile._count?.following ?? 0}</p>
-    `;
-
+function renderProfile(profile) {
+  profileInfo.innerHTML = `
+    <p><strong>Name:</strong> ${profile.name}</p>
+    <p><strong>Email:</strong> ${profile.email}</p>
+    <p><strong>Followers:</strong> ${profile._count?.followers ?? 0}</p>
+    <p><strong>Following:</strong> ${profile._count?.following ?? 0}</p>
+  `;
 
   if (profile.name === currentUser.name) {
     followBtn.style.display = "none";
     return;
   }
 
-  const isFollowing = profile.followers?.some((f) => f.name === currentUser.name);
-  followBtn.textContent = isFollowing ? "Unfollow" : "Follow";
+  // Check if already following
+  const isFollowing = profile.followers?.some(f => f.name === currentUser.name);
 
-  followBtn.onclick = () => toggleFollow(profile.name, isFollowing);
-
-
+  if (isFollowing) {
+    followBtn.textContent = "Following ✓";   
+    followBtn.disabled = true;              
+  } else {
+    followBtn.textContent = "Follow";
+    followBtn.onclick = () => toggleFollow(profile.name);
+  }
 }
 
 // Follow / Unfollow a user
-async function toggleFollow(username, isFollowing) {
+async function toggleFollow(username) {
   try {
-    const url = `${API_SOCIAL}/profiles/${username}/follow`;
-    const method = isFollowing ? "DELETE" : "PUT"; 
+    const safeUsername = encodeURIComponent(username);
+    const url = `${API_SOCIAL}/profiles/${safeUsername}/follow`;
 
     const res = await fetch(url, {
-      method,
+      method: "PUT", 
       headers: {
         Authorization: `Bearer ${token}`,
         "X-Noroff-API-Key": apiKey,
+        "Content-Type": "application/json",
       },
     });
 
+    const data = await res.json();
+
     if (!res.ok) {
-      const data = await res.json();
       throw new Error(data.errors?.[0]?.message || "Failed to toggle follow");
     }
 
-    getProfile(); 
+    console.log("Toggle follow success:", data);
+
+    getProfile();
   } catch (err) {
     alert(err.message);
+    console.error("Toggle follow error:", err);
   }
 }
 
