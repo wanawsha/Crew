@@ -1,4 +1,4 @@
-## Note on Follow/Unfollow !
+## Note on Follow/Unfollow‼️
 
 This project implements the Follow feature using the Noroff Social API v2.
 Following a user works as expected using PUT /social/profiles/{name}/follow.
