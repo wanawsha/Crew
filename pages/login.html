@@ -3,31 +3,41 @@
 <head>
   <meta charset="utf-8">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/styles.css">  
-    <link rel="stylesheet" href="../css/login-register.css">
+
+    <link rel="stylesheet" href="/css/output.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
 </head>
-<body>
-<header>
-    <nav>
-        <a href="../index.html">Home</a>
+
+<body class="text-black text-center m-20">
+  
+<header class="border-b border-gray-300 mb-6 pb-4">
+    <nav class="uppercase">
+        <a href="../index.html" class="block text-xl hover:text-gray-500 transition mb-6">Home</a>
     </nav>
 </header>
-  <h1>Login</h1>
-  <form id="login-form">
-    <label>
+
+  <h1 class="heading text-3xl mb-6">Login</h1>
+
+  <form id="login-form" class="bg-main-bg p-6 sm:p-10 md:p-16 lg:p-20 max-w-lg mx-auto rounded-lg flex flex-col gap-4 uppercase text-lg uppercase shadow-md">
+
+    <label class="w-full flex flex-col font-medium">
       Email
-      <input type="email" name="email" required>
+      <input class="p-2 px-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" type="email" name="email" required>
     </label>
-    <label>
+
+    <label class="w-full flex flex-col font-medium">
       Password
-      <input type="password" name="password" required minlength="8">
+      <input class="p-2 px-8 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" type="password" name="password" required minlength="8">
     </label>
-    <button type="submit">Login</button>
+
+    <button class="bg-black text-white uppercase py-2.5 px-16 rounded-lg hover:bg-gray-900 transition" type="submit">Login</button>
   </form>
-  <p id="login-error" style="color:red"></p>
+
+  <p id="login-error" class="text-red-500 mt-4""></p>
+
   <script type="module" src="../js/pages/login.js"></script>
 </body>
 </html>

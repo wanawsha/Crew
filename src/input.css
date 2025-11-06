@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .heading {
+    @apply text-[rgb(80,78,78)] uppercase font-bold;
+  }
+}
