@@ -3,26 +3,37 @@
 <head>
   <meta charset="utf-8">
     <title>Post Details</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/post.css">
+    <link rel="stylesheet" href="/css/output.css">
+     <!-- <link rel="stylesheet" href="../css/styles.css">
+     <link rel="stylesheet" href="../css/post.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>Post Details</h1>
-    <nav>
-        <a href="./feed.html">Home</a>
-        <a href="./profile.html">My Profile</a>
-        <a href="./create.html">Create Post +</a>
-        <button id="logout">Logout</button>
+
+<body class="font-[M_PLUS_Rounded_1c] bg-white">
+
+  <header class="text-center border-b border-gray-300 pb-4 mb-8">
+
+    <h1 class="text-3xl font-bold uppercase text-[rgb(80,78,78)] mb-8 mt-7">Post Details</h1>
+
+    <nav class="flex justify-center gap-20 uppercase text-[1.2rem]">
+        <a href="./feed.html" class="hover:bg-main-bg py-[0.5rem] px-[1rem] rounded transition">Home</a>
+        <a href="./profile.html" class="hover:bg-main-bg py-[0.5rem] px-[1rem] rounded transition">My Profile</a>
+        <a href="./create.html" class="hover:bg-main-bg py-[0.5rem] px-[1rem] rounded transition">Create Post +</a>
+        <button id="logout" class="text-black hover:bg-main-bg py-[0.5rem] px-[1rem] rounded transition uppercase">Logout</button>
     </nav>
+
   </header>
-  <main>
-    <div id="post-container"></div>
-    <p id="post-error" style="color:red"></p>
+
+  <main class="bg-main-bg max-w-[80%] rounded-lg text-left my-20 mx-auto py-20 px-6 shadow-md">
+    <div id="post-container" class="bg-white max-w-[90%] mx-auto rounded-lg p-6"></div>
+    <!-- <div class="post-card bg-white max-w-[80%] mx-auto p-4 rounded-lg shadow">
+    </div> -->
+
+    <p id="post-error" class="text-red-500 mt-4"></p>
   </main>
+  
   <script type="module" src="../js/pages/post.js"></script>
 </body>
 </html>
