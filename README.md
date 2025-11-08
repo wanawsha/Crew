@@ -11,9 +11,9 @@ If a user is already following a profile, the UI displays “Following ✓” an
 The unfollow option is disabled, and this limitation is documented here.
 
 
-# Social Media PLatform
+# Social Media Platform
 
-A front-end client for the [Noroff Social API v2] (https://docs.noroff.dev/docs/v2/social/posts).
+A front-end client for the [Noroff Social API v2](https://docs.noroff.dev/docs/v2/social/posts).
 Built using **HTML, CSS, and Vanilla Javascript (ES6 Modules)**.
 
 ---
@@ -67,11 +67,22 @@ css/
 
 ## Tech Stack
 - HTML
-- CSS3
+- CSS3 + Tailwind CSS
 - Javascript (ES6 Modules)
 - Noroff API v2
 
 ---
+
+## Setup and Run
+1. Clone the repository
+2. Install dependencies
+   ```bash
+   npm install
+
+   npm run dev
+
+
+   ```
 
 ## Authentication and Local Storage
 When a user logs in, the following values are saved in `localstorage`:
