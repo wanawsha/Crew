@@ -13,6 +13,8 @@ The unfollow option is disabled, and this limitation is documented here.
 
 # Social Media Platform
 
+![Screenshot of the site](./images/crew.website.screenshot.png)
+
 A front-end client for the [Noroff Social API v2](https://docs.noroff.dev/docs/v2/social/posts).
 Built using **HTML, CSS, and Vanilla Javascript (ES6 Modules)**.
 
