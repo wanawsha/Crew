@@ -78,11 +78,12 @@ css/
 2. Install dependencies
    ```bash
    npm install
-
-   npm run dev
-
-
    ```
+3. Start Tailwind in watch mode
+   ```bash
+   npm run dev
+   ```
+4. Open index.html in your browser
 
 ## Authentication and Local Storage
 When a user logs in, the following values are saved in `localstorage`:
