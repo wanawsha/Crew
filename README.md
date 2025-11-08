@@ -38,38 +38,34 @@ Built using **HTML, CSS, and Vanilla Javascript (ES6 Modules)**.
 ---
 
 ## Project Structure
-/ (root)
-│
-├── index.html
-│
-├── pages/
-│   ├── login.html
-│   ├── register.html
-│   ├── feed.html
-│   ├── profile.html
-│   ├── post.html
-│   └── create.html
-│
-├── js/
-│   ├── api/
-│   │   └── config.js
-│   └── pages/
-│       ├── login.js
-│       ├── register.js
-│       ├── feed.js
-│       ├── profile.js
-│       ├── post.js
-│       └── create.js
-│
-└── css/
-    ├── styles.css
-    ├── feed.css
-    ├── create.css
-    ├── edit.css
-    ├── index.css
-    ├── login-register.css
-    ├── post.css
-    └── profile.css
+- **Root /**
+  - `index.html`
+  - **/pages**
+    - `login.html`
+    - `register.html`
+    - `feed.html`
+    - `profile.html`
+    - `post.html`
+    - `create.html`
+  - **/js**
+    - **/api**
+      - `config.js`
+    - **/pages**
+      - `login.js`
+      - `register.js`
+      - `feed.js`
+      - `profile.js`
+      - `post.js`
+      - `create.js`
+  - **/css**
+    - `styles.css`
+    - `feed.css`
+    - `create.css`
+    - `edit.css`
+    - `index.css`
+    - `login-register.css`
+    - `post.css`
+    - `profile.css`
 
 
 ## Tech Stack
