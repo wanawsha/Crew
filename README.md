@@ -11,9 +11,12 @@ If a user is already following a profile, the UI displays “Following ✓” an
 The unfollow option is disabled, and this limitation is documented here.
 
 
-# Social Media PLatform
+# Social Media Platform
+![Screenshot of the site](https://github.com/user-attachments/assets/e7c6853e-63ba-4bc1-b13c-56dff4297d1b)
 
-A front-end client for the [Noroff Social API v2] (https://docs.noroff.dev/docs/v2/social/posts).
+
+
+A front-end client for the [Noroff Social API v2](https://docs.noroff.dev/docs/v2/social/posts).
 Built using **HTML, CSS, and Vanilla Javascript (ES6 Modules)**.
 
 ---
@@ -35,43 +38,55 @@ Built using **HTML, CSS, and Vanilla Javascript (ES6 Modules)**.
 ---
 
 ## Project Structure
-/ (root)
-index.html
-pages/
-  login.html
-  register.html
-  feed.html
-  profile.html
-  post.html
-  create.html
-js/
-  api/config.js
-  pages/
-    login.js
-    register.js
-    feed.js
-    profile.js
-    post.js
-    create.js
-css/
-  styles.css
-  feed.css
-  create.css
-  edit.css
-  index.css
-  login-register.css
-  post.css
-  profile.css
+- **Root /**
+  - `index.html`
+  - **/pages**
+    - `login.html`
+    - `register.html`
+    - `feed.html`
+    - `profile.html`
+    - `post.html`
+    - `create.html`
+  - **/js**
+    - **/api**
+      - `config.js`
+    - **/pages**
+      - `login.js`
+      - `register.js`
+      - `feed.js`
+      - `profile.js`
+      - `post.js`
+      - `create.js`
+  - **/css**
+    - `styles.css`
+    - `feed.css`
+    - `create.css`
+    - `edit.css`
+    - `index.css`
+    - `login-register.css`
+    - `post.css`
+    - `profile.css`
 
----
 
 ## Tech Stack
 - HTML
-- CSS3
+- CSS3 + Tailwind CSS
 - Javascript (ES6 Modules)
 - Noroff API v2
 
 ---
+
+## Setup and Run
+1. Clone the repository
+2. Install dependencies
+   ```bash
+   npm install
+   ```
+3. Start Tailwind in watch mode
+   ```bash
+   npm run dev
+   ```
+4. Open index.html in your browser
 
 ## Authentication and Local Storage
 When a user logs in, the following values are saved in `localstorage`:
