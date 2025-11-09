@@ -51,8 +51,8 @@ async function getPost(id) {
 // Render post details
 function renderPost(post) {
 postContainer.innerHTML = `
-  <div class="post-card">
-    <h2>${post.title || "Untitled Post"}</h2>
+  <div class="post-card flex flex-col space-y-4">
+    <h2 class="text-xl font-bold mb-4">${post.title || "Untitled Post"}</h2>
     <p>${post.body || ""}</p>
     <small>By: 
       <a href="./profile.html?name=${post.author?.name}">
