@@ -1,38 +1,38 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Feed</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/feed.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
-</head>
-<body>
-  <header>
-    <h1>Social Feed</h1>
-    <nav>
-        <a href="./feed.html">Home</a>
-        <a href="./profile.html">My Profile</a>
-        <a href="./create.html">Create Post +</a>
-        <button id="logout">Logout</button>
-    </nav>
-  </header>
-  <main>
-    <section id="search-post">
-     <h2>Search Posts</h2>
-        <form id="search-form">
-        <input type="text" id="search-input" placeholder="Search posts..." required>
-        <button id="search-btn" type="submit">Search</button>
-        </form>
-  </section>
-  <section id="feed-posts-container">
-    <h2>All Posts</h2>
-    <div id="posts-container"></div>
-    <p id="feed-error" style="color:red"></p>
-  </section>
-  </main>
-  <script type="module" src="../js/pages/feed.js"></script>
-</body>
+  <head>
+      <meta charset="utf-8">
+      <title>Feed</title>
+      <link rel="stylesheet" href="../css/styles.css">
+      <link rel="stylesheet" href="../css/feed.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>Social Feed</h1>
+      <nav>
+          <a href="./feed.html">Home</a>
+          <a href="./profile.html">My Profile</a>
+          <a href="./create.html">Create Post +</a>
+          <button id="logout">Logout</button>
+      </nav>
+    </header>
+    <main>
+      <section id="search-post">
+      <h2>Search Posts</h2>
+          <form id="search-form">
+          <input type="text" id="search-input" placeholder="Search posts..." required>
+          <button id="search-btn" type="submit">Search</button>
+          </form>
+    </section>
+    <section id="feed-posts-container">
+      <h2>All Posts</h2>
+      <div id="posts-container"></div>
+      <p id="feed-error" style="color:red"></p>
+    </section>
+    </main>
+    <script type="module" src="../js/pages/feed.js"></script>
+  </body>
 </html>

@@ -77,19 +77,14 @@ function renderPosts(posts) {
     card.className = "post-card";
 
     card.innerHTML = `
-      <h3>${title}</h3>
-      <p>${body}</p>
-      <small>By: <a href="./profile.html?name=${authorName}">${authorName}</a></small>
-      <br>
-      <a href="./post.html?id=${post.id}">View Post</a>
-    `;
+      <div class="post-content">
+        <h3>${title}</h3>
+        <p>${body}</p>
+        <small>By: <a href="./profile.html?name=${authorName}">${authorName}</a></small>
+      </div>
 
-    card.style.border = "1px solid #ccc";
-    card.style.background = "white";
-    card.style.color = "black";
-    card.style.padding = "10px";
-    card.style.margin = "10px 0";
-    card.style.borderRadius = "6px";
+      <a class="view-post-btn" href="./post.html?id=${post.id}">View Post</a>
+    `;
 
     if (authorName === currentUser) {
       const editLink = document.createElement("a");
