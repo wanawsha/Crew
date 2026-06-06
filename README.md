@@ -10,18 +10,63 @@ Users can follow other profiles.
 If a user is already following a profile, the UI displays “Following ✓” and disables the button.
 The unfollow option is disabled, and this limitation is documented here.
 
-
-# Social Media Platform
-![Screenshot of the site](https://github.com/user-attachments/assets/e7c6853e-63ba-4bc1-b13c-56dff4297d1b)
-
-
-
 A front-end client for the [Noroff Social API v2](https://docs.noroff.dev/docs/v2/social/posts).
 Built using **HTML, CSS, and Vanilla Javascript (ES6 Modules)**.
 
 ---
 
-## Live Demo -> https://wanawsha.github.io/Crew/index.html 
+## Screenshots
+
+<img width="2562" height="1592" alt="socialmediaafter" src="https://github.com/user-attachments/assets/fb055695-c799-4479-8bc6-ca04318ebaf5" />
+<img width="1222" height="778" alt="Skjermbilde 2026-06-06 kl  21 05 17" src="https://github.com/user-attachments/assets/4eb8a09e-4aec-4017-afc5-fc8004da76a3" />
+
+--- 
+
+## Live Demo 
+
+https://wanawsha.github.io/Crew/index.html 
+
+---
+
+## Repository
+
+https://github.com/wanawsha/Crew
+
+---
+
+## Portfolio Improvements
+
+For Portfolio 2, I reviewed the project and made additional improvements to prepare it for professional presentation.
+
+### Improvements Made
+
+* Improved the Feed page layout and visual hierarchy
+* Redesigned the Profile page layout
+* Improved the Create Post page styling
+* Improved card layouts and spacing throughout the application
+* Improved button consistency and user interface styling
+* Reviewed responsiveness across different screen sizes
+* Updated project documentation and README
+
+### Related Commit
+
+https://github.com/wanawsha/Crew/commit/f187bd0276098b043570c98bee4e989f213d3f0b
+
+---
+
+## API
+
+This project uses the Noroff Social API v2:
+
+https://docs.noroff.dev/docs/v2/social/posts
+
+Authentication is required for:
+
+* Creating posts
+* Editing posts
+* Deleting posts
+* Following users
+* Viewing authenticated profile data
 
 ---
 
